@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% embed "header.html.twig" %}{% endembed %}
+    <div class="container">
+    <div>
+        <div>
+            <h2>Jobs list</h2>
+        </div>
+        <div class="pull-right">
+            <a href="{{ path('job_new') }}">Create</a>
+        </div>    
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Experiencemonth</th>
+                <th>Experienceyear</th>
+                <th>Inteview Time</th>
+                <th>Contact Email</th>
+                <th>Contact Mobile</th>
+                <th>Status</th>
+                <th>Created Date</th>
+                <th>Last Modified Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for job in jobs %}
+            <tr>
+                <td><a href="{{ path('job_show', { 'id': job.id }) }}">{{ job.id }}</a></td>
+                <td>{{ job.title }}</td>
+                <td>{{ job.description }}</td>
+                <td>{{ job.experienceMonth }}</td>
+                <td>{{ job.experienceYear }}</td>
+                <td>{{ job.inteviewTime }}</td>
+                <td>{{ job.contactAddress }}</td>
+                <td>{{ job.contactEmail }}</td>
+                <td>{{ job.contactMobile }}</td>
+                <td>{{ job.status }}</td>
+                <td>{% if job.createdat %}{{ job.createdat|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if job.updatedat %}{{ job.updatedat|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('job_show', { 'id': job.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('job_edit', { 'id': job.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

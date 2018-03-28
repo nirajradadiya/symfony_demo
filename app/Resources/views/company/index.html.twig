@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+{% embed "header.html.twig" %}{% endembed %}
+<div class="container">
+    <div>
+        <div>
+            <h2>Companies list</h2>
+        </div>
+        <div class="pull-right">
+            <a href="{{ path('company_new') }}">Create</a>
+        </div>    
+    </div>
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Created Date</th>
+                <th>Last Modified </th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for company in companies %}
+            <tr>
+                <td><a href="{{ path('company_show', { 'id': company.id }) }}">{{ company.id }}</a></td>
+                <td>{{ company.name }}</td>
+                <td> {{ company.description|truncate(25, true) }}</td>
+                <td>{{ company.status }}</td>
+                <td>{% if company.createdat %}{{ company.createdat|date('F j Y  h:i:s    ') }}{% endif %}</td>
+                <td>{% if company.updatedat %}{{ company.updatedat|time_ago() }}{% endif %}</td>
+                <td>
+                    <button type="button" class="btn btn-link"><a href="{{ path('company_edit', { 'id': company.id }) }}">edit</a></button>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

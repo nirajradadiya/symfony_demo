@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Job</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ job.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ job.title }}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ job.slug }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ job.description }}</td>
+            </tr>
+            <tr>
+                <th>Experiencemonth</th>
+                <td>{{ job.experienceMonth }}</td>
+            </tr>
+            <tr>
+                <th>Experienceyear</th>
+                <td>{{ job.experienceYear }}</td>
+            </tr>
+            <tr>
+                <th>Website</th>
+                <td>{{ job.website }}</td>
+            </tr>
+            <tr>
+                <th>Responisibilities</th>
+                <td>{{ job.responisibilities }}</td>
+            </tr>
+            <tr>
+                <th>Inteviewtime</th>
+                <td>{{ job.inteviewTime }}</td>
+            </tr>
+            <tr>
+                <th>Contactaddress</th>
+                <td>{{ job.contactAddress }}</td>
+            </tr>
+            <tr>
+                <th>Contactemail</th>
+                <td>{{ job.contactEmail }}</td>
+            </tr>
+            <tr>
+                <th>Contactmobile</th>
+                <td>{{ job.contactMobile }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ job.status }}</td>
+            </tr>
+            <tr>
+                <th>Createdat</th>
+                <td>{% if job.createdat %}{{ job.createdat|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Updatedat</th>
+                <td>{% if job.updatedat %}{{ job.updatedat|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('job_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('job_edit', { 'id': job.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
